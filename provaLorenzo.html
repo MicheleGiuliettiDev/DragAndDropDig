@@ -1,0 +1,96 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery UI Draggable - Default functionality</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://resources/demos/style.css">
+    <style>
+        .draggable {
+            width: 150px;
+            height: 200px;
+            padding: 0.5em;
+            border: 1px solid black;
+            display: inline-block;
+            padding: 0
+        }
+
+        .container {
+            margin-top: 20px;
+            border: 2px solid black;
+            width: 600px;
+            height: 600px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        let saccoSelezionato;
+        $(function () {
+            $(".draggable").on("click", (event) => {
+                saccoSelezionato = $(event.target);
+            });
+
+            $(".draggable").draggable({
+                stop: (e) => {
+                    console.log($(e.target).offset().top - $(".container").offset().top);
+                    console.log($(e.target).offset().left - $(".container").offset().left);
+                }
+            });
+        });
+
+        const ruota = () => {
+            const width = $(saccoSelezionato).width();
+            const height = $(saccoSelezionato).height();
+            
+            $(saccoSelezionato).width(height);
+            $(saccoSelezionato).height(width);
+        } 
+
+        const setGrandezza = () => {
+            const size = $("#grandezzaSacchi").val();
+            console.log(size);
+
+            $(".draggable").width(size);
+            $(".draggable").height(size);
+        }
+    </script>
+</head>
+
+<body>
+    <button onclick="ruota()">Ruota</button>
+    <input type="number" id="grandezzaSacchi" />
+    <button onclick="setGrandezza()">Set Grandezza</button>
+    <br />
+    <div class="container">
+        <div class="draggable" class="ui-widget-content">
+            <p>Drag me around</p>
+        </div>
+        <div class="draggable" class="ui-widget-content">
+            <p>Drag me around</p>
+        </div>
+        <div class="draggable" class="ui-widget-content">
+            <p>Drag me around</p>
+        </div>
+        <div class="draggable" class="ui-widget-content">
+            <p>Drag me around</p>
+        </div>
+        <div class="draggable" class="ui-widget-content">
+            <p>Drag me around</p>
+        </div>
+        <div class="draggable" class="ui-widget-content">
+            <p>Drag me around</p>
+        </div>
+        <div class="draggable" class="ui-widget-content">
+            <p>Drag me around</p>
+        </div>
+        <div class="draggable" class="ui-widget-content">
+            <p>Drag me around</p>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
